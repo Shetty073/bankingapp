@@ -1,0 +1,2 @@
+#1 - User CIF 1 deposited ₹5000 @ 2022-05-23 23:51:29 :: Balance before: ₹0 :: Balance after: ₹5000
+#2 - User CIF 1 withdrawed ₹-250 @ 2022-05-23 23:51:47 :: Balance before: ₹5000 :: Balance after: ₹4750

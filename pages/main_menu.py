@@ -2,7 +2,7 @@ from tkinter import ttk
 import tkinter
 from helpers.balance import get_balance
 from helpers.deposit import deposit_amount
-from helpers.transact import get_transactions
+from helpers.transact import download_transactions, get_transactions
 from helpers.withdraw import withdraw_amount
 
 
@@ -86,10 +86,11 @@ def transactions(window, last_frame):
     transactions = get_transactions()
     i = 1
     for transaction in transactions:
-        data = f"#{transaction[0]} - User CIF {transaction[1]} {transaction[2]} ₹{transaction[3]} @ {transaction[6]} :: Balance before: ₹{transaction[4]} :: Balance after: ₹{transaction[5]}"
+        data = f"#{transaction[0]} - CIF {transaction[1]} {transaction[2]} ₹{transaction[3]} @ {transaction[6]} :: Balance before: ₹{transaction[4]} :: Balance after: ₹{transaction[5]}"
         ttk.Label(transactions_frame, text=data, font=("Arial", 10), anchor="w").grid(column=0, row=i)
         i += 1
         
 
-    ttk.Button(transactions_frame, text="Go Back", command=lambda:main_menu(window, transactions_frame)).grid(column=0, row=i)
+    ttk.Button(transactions_frame, text="Download", command=download_transactions).grid(column=0, row=i)
+    ttk.Button(transactions_frame, text="Go Back", command=lambda:main_menu(window, transactions_frame)).grid(column=0, row=i+1)
     transactions_frame.tkraise()

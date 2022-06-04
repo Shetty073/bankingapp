@@ -1,4 +1,5 @@
 
+import os
 from db.db import DbHelper
 from helpers.alert import display_alert
 from shared import shared
@@ -25,3 +26,16 @@ def get_transactions():
     cursor.execute(sql, val)
     result = cursor.fetchall()
     return result
+
+
+def download_transactions():
+    transactions = get_transactions()
+    file = f"{os.getcwd()}/transactions.txt"
+
+    with open(file, "w", encoding="utf-8") as file:
+        data = ""
+        i = 1
+        for transaction in transactions:
+            data += f"#{transaction[0]} - CIF {transaction[1]} {transaction[2]} ₹{transaction[3]} @ {transaction[6]} :: Balance before: ₹{transaction[4]} :: Balance after: ₹{transaction[5]}\n"
+            i += 1
+        file.write(data)
